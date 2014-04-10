@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.particlebench.js",
-  "version":        "0.8.0",
+  "version":        "0.8.1",
   "description":    "Particle benchmark",
   "url":            "https://github.com/uupaa/ParticleBench.js",
   "keywords":       ["WebModule"],
@@ -21,8 +21,10 @@
     "output":       "release/ParticleBench.min.js"
   },
   "dependencies": {
+    "uupaa.clock.js":   ""
   },
   "devDependencies": {
+    "uupaa.valid.js":   "",
     "uupaa.watch.js":   "",
     "uupaa.plato.js":   "",
     "uupaa.minify.js":  ""
