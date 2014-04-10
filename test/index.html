@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><title>test</title>
+<meta charset="utf-8"></head><body>
+<canvas id="view" width="640" height="640"></canvas>
+<div id="fps"></div>
+
+<script src="../lib/ParticleBench.js"></script>
+<!--
+<script src="../release/ParticleBench.min.js"></script>
+ -->
+
+<script>
+  var viewNode = document.querySelector("#view");
+  var fpsNode  = document.querySelector("#fps");
+  var param = { count: 90000, canvas: viewNode };
+
+  var bench = new ParticleBench(param, function(fps) {
+                    fpsNode.textContent = fps.toFixed(2);
+                  }).run();
+</script>
+</body></html>
+
