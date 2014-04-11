@@ -1,23 +1,42 @@
 <!DOCTYPE html><html><head><title>test</title>
 <meta charset="utf-8"></head><body>
-<canvas id="view" width="640" height="640"></canvas>
-<div id="fps"></div>
+<span id="fps1"></span>
+<span id="fps2"></span>
+<br />
+<canvas id="view1" width="640" height="640"></canvas>
+<canvas id="view2" width="640" height="640"></canvas>
 
 <script src="../node_modules/uupaa.valid.js/lib/Valid.js"></script>
 <script src="../node_modules/uupaa.clock.js/lib/Clock.js"></script>
-<script src="../lib/ParticleBench.js"></script>
+<script src="../lib/ParticleBenchMaster.js"></script>
 <!--
-<script src="../release/ParticleBench.min.js"></script>
+<script src="../lib/ParticleBench.js"></script>
  -->
+<script src="../release/ParticleBench.min.js"></script>
 
 <script>
-  var viewNode = document.querySelector("#view");
-  var fpsNode  = document.querySelector("#fps");
-  var param = { count: 90000, canvas: viewNode };
+  var viewNode1 = document.querySelector("#view1");
+  var viewNode2 = document.querySelector("#view2");
+  var fpsNode1  = document.querySelector("#fps1");
+  var fpsNode2  = document.querySelector("#fps2");
 
-  var bench = new ParticleBench(param, function(fps) {
-                    fpsNode.textContent = fps.toFixed(2);
-                  }).run();
+  var benchParam1 = {
+        src:    "../lib/ParticleBenchWorker.js",
+        count:  10000 * 15,
+        canvas: viewNode1
+      };
+
+  var benchParam2 = {
+        count:  10000 * 15,
+        canvas: viewNode2
+      };
+
+  var bench1 = new ParticleBenchMaster(benchParam1, function(fps) {
+                    fpsNode1.textContent = "Worker: " + fps.toFixed(2);
+                }).run();
+  var bench2 = new ParticleBench(benchParam2, function(fps) {
+                    fpsNode2.textContent = "Main:" + fps.toFixed(2);
+                }).run();
 </script>
 </body></html>
 
