@@ -1,8 +1,6 @@
 <!DOCTYPE html><html><head><title>test</title>
 <meta charset="utf-8"></head><body>
-<span id="fps1"></span>
-<span id="fps2"></span>
-<br />
+<div style="height:60px"><span id="fps1"></span>,<span id="fps2"></span></div>
 <canvas id="view1" width="640" height="640"></canvas>
 <canvas id="view2" width="640" height="640"></canvas>
 
@@ -23,19 +21,21 @@
   var benchParam1 = {
         src:    "../lib/ParticleBenchWorker.js",
         count:  10000 * 15,
-        canvas: viewNode1
+        canvas: viewNode1,
+        frameSkip: true
       };
 
   var benchParam2 = {
         count:  10000 * 15,
-        canvas: viewNode2
+        canvas: viewNode2,
+        frameSkip: true
       };
 
-  var bench1 = new ParticleBenchMaster(benchParam1, function(fps) {
-                    fpsNode1.textContent = "Worker: " + fps.toFixed(2);
+  var bench1 = new ParticleBenchMaster(benchParam1, function(fps, skipped) {
+                    fpsNode1.textContent = "Worker: " + fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
                 }).run();
-  var bench2 = new ParticleBench(benchParam2, function(fps) {
-                    fpsNode2.textContent = "Main:" + fps.toFixed(2);
+  var bench2 = new ParticleBench(benchParam2, function(fps, skipped) {
+                    fpsNode2.textContent = "Main:" + fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
                 }).run();
 </script>
 </body></html>
