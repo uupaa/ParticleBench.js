@@ -1,9 +1,9 @@
 {
   "name":           "uupaa.particlebench.js",
-  "version":        "0.8.4",
+  "version":        "0.8.5",
   "description":    "Particle benchmark",
   "url":            "https://github.com/uupaa/ParticleBench.js",
-  "keywords":       ["WebModule"],
+  "keywords":       ["Particle","benchmark", "WebModule"],
   "repository": {
     "type":         "git",
     "url":          "https://github.com/uupaa/ParticleBench.js.git"
@@ -13,7 +13,9 @@
     "build":        "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty",
     "build-simple": "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty --nowrap --simple",
     "build-release":"node node_modules/uupaa.minify.js --verbose --strict --module",
-    "test":         "open test/index.html",
+    "test":         "npm run test-browser",
+    "test-node":    "",
+    "test-browser": "open test/index.html",
     "lint":         "node node_modules/uupaa.plato.js; open lint/plato/index.html"
   },
   "x-build": {
