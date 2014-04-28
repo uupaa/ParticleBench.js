@@ -1,8 +1,17 @@
 <!DOCTYPE html><html><head><title>test</title>
 <meta charset="utf-8"></head><body>
-<div style="height:60px"><span id="fps1"></span>,<span id="fps2"></span></div>
+<div style="height:60px">
+  <span id="fps1"></span>,
+<!--
+  <span id="fps2"></span>,
+ -->
+  <span id="fps3"></span>
+</div>
 <canvas id="view1" width="640" height="640"></canvas>
+<!--
 <canvas id="view2" width="640" height="640"></canvas>
+ -->
+<canvas id="view3" width="640" height="640"></canvas>
 
 <script src="../node_modules/uupaa.valid.js/lib/Valid.js"></script>
 <script src="../node_modules/uupaa.clock.js/lib/Clock.js"></script>
@@ -14,9 +23,11 @@
 
 <script>
   var viewNode1 = document.querySelector("#view1");
-  var viewNode2 = document.querySelector("#view2");
+//  var viewNode2 = document.querySelector("#view2");
+  var viewNode3 = document.querySelector("#view3");
   var fpsNode1  = document.querySelector("#fps1");
-  var fpsNode2  = document.querySelector("#fps2");
+//  var fpsNode2  = document.querySelector("#fps2");
+  var fpsNode3  = document.querySelector("#fps3");
 
   var benchParam1 = {
         src:    "../lib/ParticleBenchWorker.js",
@@ -25,17 +36,31 @@
         frameSkip: true
       };
 
+/*
   var benchParam2 = {
+        src:    "../lib/ParticleBenchWorker2.js",
         count:  10000 * 15,
         canvas: viewNode2,
+        frameSkip: true
+      };
+ */
+
+  var benchParam3 = {
+        count:  10000 * 15,
+        canvas: viewNode3,
         frameSkip: true
       };
 
   var bench1 = new ParticleBenchMaster(benchParam1, function(fps, skipped) {
                     fpsNode1.textContent = "Worker: " + fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
                 }).run();
-  var bench2 = new ParticleBench(benchParam2, function(fps, skipped) {
-                    fpsNode2.textContent = "Main:" + fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
+/*
+  var bench2 = new ParticleBenchMaster(benchParam2, function(fps, skipped) {
+                    fpsNode2.textContent = "Worker: " + fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
+                }).run();
+ */
+  var bench3 = new ParticleBench(benchParam3, function(fps, skipped) {
+                    fpsNode3.textContent = "Main:" + fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
                 }).run();
 </script>
 </body></html>

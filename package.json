@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.particlebench.js",
-  "version":        "0.8.6",
+  "version":        "0.8.7",
   "description":    "Particle benchmark",
   "url":            "https://github.com/uupaa/ParticleBench.js",
   "keywords":       ["Particle","benchmark", "WebModule"],
@@ -14,19 +14,28 @@
     "build-simple": "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty --nowrap --simple",
     "build-release":"node node_modules/uupaa.minify.js --verbose --strict --module",
     "test":         "npm run test-browser",
-    "test-node":    "",
+    "test-page":    "node node_modules/uupaa.test.js/bin/TestPage.js --verbose",
+    "test-debug":   "NODE_ENV=production NODE_PATH=lib node --debug-brk --harmony test/index.node.js",
+    "test-node":    "NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js",
     "test-browser": "open test/index.html",
     "lint":         "node node_modules/uupaa.plato.js; open lint/plato/index.html"
   },
   "x-build": {
-    "inputs":       ["lib/ParticleBench.js"],
-    "output":       "release/ParticleBench.min.js"
+    "files":        ["lib/ParticleBench.js"],
+    "output":       "release/ParticleBench.min.js",
+    "target":       ["browser"],
+    "module": {
+      "develop":    [],
+      "release":    ["uupaa.clock.js"]
+    }
   },
   "dependencies": {
     "uupaa.clock.js":   ""
   },
   "devDependencies": {
+    "uupaa.nodemodule.js": "",
     "uupaa.valid.js":   "",
+    "uupaa.test.js":    "",
     "uupaa.watch.js":   "",
     "uupaa.plato.js":   "",
     "uupaa.minify.js":  ""
