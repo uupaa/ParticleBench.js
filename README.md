@@ -8,22 +8,22 @@ Particle benchmake.
 
 # Document
 
-- [WebModule](https://github.com/uupaa/WebModule) ([Slide](http://uupaa.github.io/Slide/slide/WebModule/index.html))
-- [Development](https://github.com/uupaa/WebModule/wiki/Development)
 - [ParticleBench.js wiki](https://github.com/uupaa/ParticleBench.js/wiki/ParticleBench)
+- [Development](https://github.com/uupaa/WebModule/wiki/Development)
+- [WebModule](https://github.com/uupaa/WebModule) ([Slide](http://uupaa.github.io/Slide/slide/WebModule/index.html))
 
 
 # How to use
 
 ```js
-<script src="lib/ParticleBench.js">
+<script src="lib/UIThreadRender.js">
 <script>
   var viewNode = document.querySelector("#view");
   var fpsNode  = document.querySelector("#fps");
   var param = { count: 30000, canvas: viewNode };
 
-  var bench = new ParticleBench(param, function(fps) {
-                    fpsNode.textContent = fps.toFixed(2);
+  var bench = new UIThreadRender(param, function(fps, skipped) {
+                    fpsNode.textContent = fps.toFixed(2) + "(frameSkipped: " + skipped + ")";
                   }).run();
 </script>
 ```
