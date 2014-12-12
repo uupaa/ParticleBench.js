@@ -1,48 +1,48 @@
 {
-  "name":           "uupaa.particlebench.js",
-  "version":        "0.8.10",
-  "description":    "Particle benchmark",
-  "url":            "https://github.com/uupaa/ParticleBench.js",
-  "keywords":       ["Particle","benchmark", "WebModule"],
+  "name": "uupaa.particlebench.js",
+  "version": "0.8.11",
+  "description": "Particle benchmark",
+  "url": "https://github.com/uupaa/ParticleBench.js",
+  "keywords": [
+    "Particle",
+    "benchmark",
+    "WebModule"
+  ],
   "repository": {
-    "type":         "git",
-    "url":          "https://github.com/uupaa/ParticleBench.js.git"
+    "type": "git",
+    "url": "https://github.com/uupaa/ParticleBench.js.git"
   },
   "scripts": {
-    "watch":        "node node_modules/uupaa.watch.js --verbose --action build",
-    "build":        "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty",
-    "build-simple": "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty --nowrap --simple",
-    "build-release":"node node_modules/uupaa.minify.js --verbose --strict --module",
-    "test":         "npm run test-browser",
-    "test-page":    "node node_modules/uupaa.test.js/bin/TestPage.js --verbose",
-    "test-debug":   "NODE_ENV=production NODE_PATH=lib node --debug-brk --harmony test/index.node.js",
-    "test-node":    "NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js",
-    "test-browser": "open test/index.html",
-    "lint":         "node node_modules/uupaa.plato.js; open lint/plato/index.html"
+    "sync": "node ../WebModule/run/sync.js; npm update;",
+    "watch": "node ../WebModule/run/watch.js --verbose --action minify",
+    "minify": "node ../WebModule/run/minify.js --verbose --strict --keep --pretty",
+    "build": "node ../WebModule/run/minify.js --verbose --strict --module",
+    "test": "npm run minify; npm run node; npm run browser",
+    "node": "NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js",
+    "noded": "NODE_ENV=production NODE_PATH=lib node --debug-brk --harmony test/index.node.js",
+    "browser": "open http://localhost:8000/ParticleBench.js/test/index.html",
+    "sim": "node ../WebModule/run/sim.js http://localhost:8000/ParticleBench.js/test/index.html",
+    "simx": "node ../WebModule/run/sim.js stop",
+    "hint": "jshint lib/*.js",
+    "score": "node ../WebModule/run/score.js; open lint/plato/index.html",
+    "patch": "node ../WebModule/run/patch.js",
+    "start": "cd ../; Python -m SimpleHTTPServer 8000 &",
+    "stop": "killall -- Python -m SimpleHTTPServer 8000; exit 0"
   },
-  "x-build": {
-    "files":        ["lib/ParticleBench.js"],
-    "output":       "release/ParticleBench.min.js",
-    "target":       ["browser"],
-    "module": {
-      "develop":    [],
-      "release":    ["uupaa.clock.js"]
-    }
+  "webmodule": {
+    "source": ["lib/ParticleBench.js"],
+    "output": "release/ParticleBench.min.js",
+    "target": [
+      "browser"
+    ]
   },
   "dependencies": {
-    "uupaa.clock.js":   ""
+    "uupaa.wmclock.js": ""
   },
-  "devDependencies": {
-    "uupaa.nodemodule.js": "",
-    "uupaa.valid.js":   "",
-    "uupaa.test.js":    "",
-    "uupaa.watch.js":   "",
-    "uupaa.plato.js":   "",
-    "uupaa.minify.js":  ""
-  },
-  "lib":            "./lib/",
-  "main":           "./index.js",
-  "author":         "uupaa <uupaa.js@gmail.com>",
-  "license":        "MIT",
-  "contributors":   []
+  "devDependencies": {},
+  "lib": "./lib/",
+  "main": "./index.js",
+  "author": "uupaa <uupaa.js@gmail.com>",
+  "license": "MIT",
+  "contributors": []
 }
